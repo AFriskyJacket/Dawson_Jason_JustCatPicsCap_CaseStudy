@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DawsonJasonJustCatPicsCapCaseStudyApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DawsonJasonJustCatPicsCapCaseStudyApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DawsonJasonJustCatPicsCapCaseStudyApplication.class, args);
+    }
 
 }

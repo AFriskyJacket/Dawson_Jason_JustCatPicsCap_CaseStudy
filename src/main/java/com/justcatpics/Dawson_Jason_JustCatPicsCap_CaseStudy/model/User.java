@@ -16,9 +16,9 @@ import java.util.UUID;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private UUID id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -33,5 +33,8 @@ public class User {
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "role_id", nullable = false, unique = true)
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PictureMetaData> pictureMetaData = new LinkedHashSet<>();
 
 }

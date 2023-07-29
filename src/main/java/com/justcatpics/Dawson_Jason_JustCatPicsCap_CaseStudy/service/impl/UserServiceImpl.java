@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +20,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+
     @Override
     public void saveUser(UserDto userDto) {
         User user = new User();
@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
         user.setRole(role);
         userRepository.save(user);
     }
+
     private Role checkRoleExist() {
         Role role = new Role();
         role.setName("ROLE_ADMIN");
@@ -48,14 +49,21 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findByEmailIgnoreCase(email);
     }
+
     @Override
     public List<UserDto> findAllUsers() {
-        List<User>users = userRepository.findAll();
+        List<User> users = userRepository.findAll();
 
         return users.stream()
                 .map((user) -> mapToUserDto(user))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
     private UserDto mapToUserDto(User user) {
         UserDto userDto = new UserDto();
         userDto.setUserName(userDto.getUserName());

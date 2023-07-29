@@ -7,4 +7,6 @@ import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<User, UUID> {
     User findByEmailIgnoreCase(String email);
+
+    void deleteById(Long id);
 }
